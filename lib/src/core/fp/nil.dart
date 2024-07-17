@@ -4,5 +4,5 @@ class Nil {
     return 'Nil{}';
   }
 
-  Nil get nil => Nil();
 }
+  Nil get nil => Nil();
