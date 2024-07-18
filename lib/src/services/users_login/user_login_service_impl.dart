@@ -19,7 +19,7 @@ class UserLoginServiceImpl implements UserLoginService {
   @override
   Future<Either<ServiceException, Nil>> execute(String email, String password) async {
     final loginResult = await userRepository.login(email, password);
-
+    
     switch (loginResult) {
       
       case Success(value: final accessToken):
