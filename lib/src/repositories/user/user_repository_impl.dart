@@ -17,7 +17,10 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<AuthException, String>> login(String email, String password) async {
     try {
+      log('entrou no repository login');
       final Response(:data) = await restClient.unAuth.post('/auth', data: {'email': email, 'password': password});
+      log('data do repository login: $data');
+
       return Success(data['access_token']);
     } on DioException catch (e, s) {
       if (e.response != null) {
