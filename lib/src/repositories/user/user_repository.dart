@@ -3,8 +3,10 @@ import 'package:app_barbershop/src/core/fp/either.dart';
 import 'package:app_barbershop/src/model/user_model.dart';
 
 import '../../core/exceptions/repository_exception.dart';
+import '../../core/fp/nil.dart';
 
 abstract interface class UserRepository {
   Future<Either<AuthException, String>> login(String email, String password);
   Future<Either<RepositoryException, UserModel>> me();
+  Future<Either<RepositoryException, Nil>> registerAdmin(({String name, String email, String password}) userData);
 }

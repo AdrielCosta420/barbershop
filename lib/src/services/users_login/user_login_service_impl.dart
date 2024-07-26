@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/constants/local_storage_keys.dart';
@@ -19,12 +21,12 @@ class UserLoginServiceImpl implements UserLoginService {
   @override
   Future<Either<ServiceException, Nil>> execute(String email, String password) async {
     final loginResult = await userRepository.login(email, password);
-    
+
     switch (loginResult) {
-      
       case Success(value: final accessToken):
         final sp = await SharedPreferences.getInstance();
         sp.setString(LocalStorageKeys.accessToken, accessToken);
+        log('fez o login após criar user');
         return Success(nil);
 
       case Failure(:final exception):

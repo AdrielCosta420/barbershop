@@ -35,6 +35,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       switch (state) {
         case LoginState(status: LoginStateStatus.initial):
           break;
+          
         case LoginState(status: LoginStateStatus.error, :final errorMessage?):
           Messages.showError(errorMessage, context);
         //Se for nulo

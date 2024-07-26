@@ -15,10 +15,10 @@ class LoginVm extends _$LoginVm {
   LoginState build() => LoginState.initial();
 
   Future<void> login(String email, String password) async {
-    final loaderHandle = AsyncLoaderHandler()..start();
+    // final loaderHandle = AsyncLoaderHandler()..start();
     final loginService = ref.watch(userloginServiceProvider);
 
-    final result = await loginService.execute(email, password);
+    final result = await loginService.execute(email, password).asyncLoader();
 
     switch (result) {
       case Success():
@@ -36,6 +36,6 @@ class LoginVm extends _$LoginVm {
       case Failure(exception: ServiceException(:final message)):
         state = state.copyWith(status: LoginStateStatus.error, errorMessage: () => message);
     }
-    loaderHandle.close();
+    // loaderHandle.close();
   }
 }
